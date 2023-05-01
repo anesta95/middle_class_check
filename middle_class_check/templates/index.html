@@ -1,0 +1,51 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Median Household Income Checker</h1>
+  <form>
+    <p>In the year </p>
+    <select name="year" 
+    hx-get="{% url 'locales' %}"
+    hx-include="[name='state_name'], [name='geography_name']"
+    hx-trigger="change"
+    hx-target="#locales"
+    >
+        <!-- <option selected>Select a year</option> -->
+        {% for year in unique_years %}
+            <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+    </select>
+    <p> I lived in the state of </p>
+    <select name="state_name"
+    hx-get="{% url 'locales' %}"
+    hx-include="[name='year'], [name='geography_name']"
+    hx-trigger="change"
+    hx-target="#locales"
+    >
+        <!-- <option selected>Select a state</option> -->
+        {% for state in unique_states %}
+            <option value="{{ state }}">{{ state }}</option>
+        {% endfor %}
+    </select>
+    <p> and the </p>
+    <select name="geography_name"
+    hx-get="{% url 'locales' %}"
+    hx-include="[name='state_name'], [name='year']"
+    hx-trigger="change"
+    hx-target="#locales"
+    >
+        <!-- <option selected>Select an area type</option> -->
+        {% for area in unique_areas %}
+            <option value="{{ area }}">{{ area }}</option>
+        {% endfor %}
+    </select>
+    
+    <p> of </p>
+    <div id="locales">
+        {% include "partials/locales.html" %}
+    </div>
+
+    <p>and had a household income of </p>
+    <input type="text" name="hh_income" id="hh_income" required> 
+  </form>
+{% endblock %}

@@ -1,0 +1,6 @@
+<select name="locales">
+    <option selected>Select a locale</option>
+    {% for locale in locales %}
+        <option value="{{ locale.geoid }}">{{ locale.name }}</option>
+    {% endfor %}
+</select>
