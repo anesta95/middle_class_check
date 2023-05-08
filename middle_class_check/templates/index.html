@@ -1,40 +1,59 @@
 {% extends "base_generic.html" %}
+{% load widget_tweaks %}
 
 {% block content %}
   <h1>Median Household Income Checker</h1>
-  <form>
+  <form method="get">
+  <p>In the year of </p>
+  {% render_field form.year class='custom-select mb-4' name="year" autocomplete="off" hx-get="locales" hx-include=".custom-select" hx-trigger="change" hx-target="#id_geos" %}
+
+  <p> I lived in the state of </p>
+  {% render_field form.state class='custom-select mb-4' name="state" autocomplete="off" hx-get="locales" hx-include=".custom-select" hx-trigger="change" hx-target="#id_geos" %}
+
+  <p> in the </p>
+  {% render_field form.area class='custom-select mb-4' name="area" autocomplete="off" hx-get="locales" hx-include=".custom-select" hx-trigger="change" hx-target="#id_geos" %}
+
+  <p> of </p>
+  {% render_field form.geos class='custom-select mb-4' name="geo" %}
+
+  <p> and my household made </p>
+  {% render_field form.income class='form-control mb-4' name="income" %}
+  <p> dollars that year.</p>
+  <input type="submit" value="Click to compare your income"/>
+  </form>
+  <!-- <form>
     <p>In the year </p>
-    <select name="year" 
+    <select name="year"
+    id="year" 
     hx-get="{% url 'locales' %}"
     hx-include="[name='state_name'], [name='geography_name']"
     hx-trigger="change"
     hx-target="#locales"
     >
-        <!-- <option selected>Select a year</option> -->
         {% for year in unique_years %}
             <option value="{{ year }}">{{ year }}</option>
         {% endfor %}
     </select>
     <p> I lived in the state of </p>
     <select name="state_name"
+    id="state_name"
     hx-get="{% url 'locales' %}"
     hx-include="[name='year'], [name='geography_name']"
     hx-trigger="change"
     hx-target="#locales"
     >
-        <!-- <option selected>Select a state</option> -->
         {% for state in unique_states %}
             <option value="{{ state }}">{{ state }}</option>
         {% endfor %}
     </select>
     <p> and the </p>
     <select name="geography_name"
+    id="geography_name"
     hx-get="{% url 'locales' %}"
     hx-include="[name='state_name'], [name='year']"
     hx-trigger="change"
     hx-target="#locales"
     >
-        <!-- <option selected>Select an area type</option> -->
         {% for area in unique_areas %}
             <option value="{{ area }}">{{ area }}</option>
         {% endfor %}
@@ -47,5 +66,7 @@
 
     <p>and had a household income of </p>
     <input type="text" name="hh_income" id="hh_income" required> 
-  </form>
+
+    <input type="submit" name="hh_income_check"  value="Click to compare your income"/>
+  </form> -->
 {% endblock %}
