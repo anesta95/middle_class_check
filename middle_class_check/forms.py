@@ -35,10 +35,11 @@ class AreaForm(DynamicFormMixin, forms.Form):
     )
 
     # Geo dynamic field
-    geos = DynamicField(
+    geoid = DynamicField(
         forms.ModelChoiceField,
         queryset=geo_choices,
-        initial=initial_geo
+        initial=initial_geo,
+        to_field_name="geoid"
     )
 
     income = forms.IntegerField(

@@ -27,10 +27,56 @@ def index(request):
 
 def locales(request):
     form = AreaForm(request.GET)
-    return HttpResponse(form['geos'])
+    return HttpResponse(form['geoid'])
     # year = request.GET.get('year')
     # state_name = request.GET.get('state_name')
     # geography_name = request.GET.get('geography_name')
     # locales = MedianHouseholdIncome.objects.filter(year=year).filter(state_name=state_name).filter(geography_name=geography_name).distinct()
+    # locales = form['geos']
     # context = {'locales': locales}
     # return render(request, "partials/locales.html", context=context)
+
+def results(request):
+    year = request.GET.get('year')
+    state_name = request.GET.get('state')
+    geography_name = request.GET.get('area')
+    geoid = request.GET.get('geoid')
+    provided_income = int(request.GET.get('income'))
+
+    area_income = int(MedianHouseholdIncome.objects.filter(year=year).filter(geoid=geoid).values_list('median_hh_income', flat=True)[0])
+    national_income = int(MedianHouseholdIncome.objects.filter(year=year).filter(geoid='1').values_list('median_hh_income', flat=True)[0])
+    area_name = str(MedianHouseholdIncome.objects.filter(year=year).filter(geoid=geoid).values_list('name', flat=True)[0])
+
+    area_income_diff = round(((provided_income / area_income) - 1) * 100, 2)
+    national_income_diff = round(((provided_income / national_income) - 1) * 100, 2)
+
+    area_income_direction = 'more' if provided_income > area_income else 'less'
+    national_income_direction = 'more' if provided_income > national_income else 'less'
+    text_res = " ".join([
+        "In the year",
+        year,
+        "your household made",
+        str(area_income_diff),
+        "%",
+        area_income_direction,
+        "than the median household in",
+        area_name,
+        "and",
+        str(national_income_diff),
+        "%",
+        national_income_direction,
+        "than the median household in the United States."
+
+
+    ])
+    context = {
+        'text_res': text_res,
+    }
+
+    return render(request, 'results.html', context=context)
+
+
+
+
+
+    

@@ -3,21 +3,25 @@
 
 {% block content %}
   <h1>Median Household Income Checker</h1>
-  <form method="get">
+  <form action = "/middle_class_check/results/" method="get">
   <p>In the year of </p>
-  {% render_field form.year class='custom-select mb-4' name="year" autocomplete="off" hx-get="locales" hx-include=".custom-select" hx-trigger="change" hx-target="#id_geos" %}
+  {% render_field form.year class='select-options custom-select mb-4' name="year" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
 
   <p> I lived in the state of </p>
-  {% render_field form.state class='custom-select mb-4' name="state" autocomplete="off" hx-get="locales" hx-include=".custom-select" hx-trigger="change" hx-target="#id_geos" %}
+  {% render_field form.state class='select-options custom-select mb-4' name="state" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
 
   <p> in the </p>
-  {% render_field form.area class='custom-select mb-4' name="area" autocomplete="off" hx-get="locales" hx-include=".custom-select" hx-trigger="change" hx-target="#id_geos" %}
+  {% render_field form.area class='select-options custom-select mb-4' name="area" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
 
   <p> of </p>
-  {% render_field form.geos class='custom-select mb-4' name="geo" %}
+  {% render_field form.geoid class='custom-select mb-4' %}
+  <!-- <div id="id_geos">
+    {% include "partials/locales.html" %}
+  </div> -->
 
   <p> and my household made </p>
   {% render_field form.income class='form-control mb-4' name="income" %}
+
   <p> dollars that year.</p>
   <input type="submit" value="Click to compare your income"/>
   </form>
