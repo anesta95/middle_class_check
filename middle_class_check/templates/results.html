@@ -1,5 +1,12 @@
 {% extends "base_generic.html" %}
 {% block content %}
+<div>
+{% autoescape off %}
+
+{{ bar_chart }}
+    
+{% endautoescape %}
+</div>
 <p>{{ text_res }}</p>
 
 {% endblock %}
