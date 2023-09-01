@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 
 def plotly_plot(year, provided_income, area_income, national_income, area_name, area_moe, national_moe):
@@ -18,17 +19,36 @@ def plotly_plot(year, provided_income, area_income, national_income, area_name, 
         currency_format = "${:,}".format(y_data[i])
         text_labels.append(currency_format)
 
-    fig = px.bar(x=x_data, 
-                 y=y_data, 
-                 title=fig_title,
-                 text=text_labels,
-                 error_y=[None, area_moe, national_moe],
-                 labels={
-                    "x": "",
-                    "y": ""
-                 })
+    # fig = px.bar(x=x_data, 
+    #              y=y_data, 
+    #              title=fig_title,
+    #              hover_name=x_data,
+    #              hover_data={
+    #                 'text':False
+    #              },
+    #             #  hovertemplate='<b>$%{y:.2f}</b>',
+    #              text=text_labels,
+    #              error_y=[None, area_moe, national_moe],
+    #              labels={
+    #                 "x": "",
+    #                 "y": ""
+    #              })
 
-    fig.update_layout(yaxis_tickprefix = '$', 
+
+    fig = go.Figure(go.Bar(
+        x = x_data,
+        y = y_data,
+        hovertemplate =
+        '%{x}:'+
+        '<br><b>$%{y:,}</b><extra></extra>',
+        text=text_labels,
+        textfont=dict(
+            size=20
+        ),
+        showlegend = False))
+
+    fig.update_layout(xaxis = dict(tickfont = dict(size=16)),
+                      yaxis_tickprefix = '$', 
                       yaxis_tickformat = ',.',
                       paper_bgcolor="rgba(0,0,0,0)", 
                       plot_bgcolor="rgba(0,0,0,0)")
