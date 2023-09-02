@@ -3,28 +3,49 @@
 
 {% block content %}
   <h1>Median Household Income Checker</h1>
-  <form action = "/middle_class_check/results/" method="get">
-  <p>In the year of 
-  {% render_field form.year class='select-options custom-select mb-4' name="year" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
+    <form action = "/middle_class_check/results/" method="get", class="row row-cols-lg-auto g-3 align-items-center">
+        <div class="col-12">
+            <label>In the year of</label>
+        </div>
+        <div class="col-12">
+            {% render_field form.year class='select-options custom-select' name="year" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
+        </div>
+        <div class="col-12">
+            <label>I lived in the state of</label>
+        </div>
+        <div class="col-12">
+            {% render_field form.state class='select-options custom-select' name="state" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
+        </div>
+        <div class="col-12">
+            <label>in the</label>
+        </div>
+        <div class="col-12">
+            {% render_field form.area class='select-options custom-select' name="area" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
+        </div>
+        <div class="col-12">
+            <label>of</label> 
+        </div>
+        <div class="col-12">
+            {% render_field form.geoid class='custom-select' %}
+        </div>
+        <div class="col-12">
+            <label>and my <i><b>household<sup>1</sup></b></i> had an <i><b>income<sup>2</sup></b></i> of</label>
+        </div>
+        <div class="col-12">
+            {% render_field form.income class='form-control' name="income" %}
+        </div>
+        <div class="col-12">
+            <label>dollars that year.</label>
+        </div>
+        <div class="col-12">
+            <input type="submit" value="Click to compare your income"/>
+        </div>
+    </form>
+    <div class="col-12 pt-5">
+        <p><i><b><sup>1</sup></b></i>The Census Bureau defines a <a href="https://www.census.gov/glossary/?term=Household">household</a> as a housing unit (such as a house or apartment) that includes all the people who occupy it as their usual place of residence. This includes related family and unrelated people.</p>
+        <p><i><b><sup>2</sup></b></i>The Census Bureau defines <a href="https://www.census.gov/glossary/?term=Income">income</a> as the income received on a regular basis (exclusive of certain money receipts such as capital gains and lump-sum payments) before payments for personal income taxes, social security, union dues, medicare deductions, etc.</p>
 
-   I lived in the state of 
-  {% render_field form.state class='select-options custom-select mb-4' name="state" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
-
-  in the
-  {% render_field form.area class='select-options custom-select mb-4' name="area" autocomplete="off" hx-get="locales" hx-include=".select-options" hx-trigger="change" hx-target="#id_geoid" %}
-
-   of
-  {% render_field form.geoid class='custom-select mb-4' %}
-  <!-- <div id="id_geos">
-    {% include "partials/locales.html" %}
-  </div> -->
-
-  and my household had an income of 
-  {% render_field form.income class='form-control mb-4' name="income" %}
-
-  dollars that year.</p>
-  <input type="submit" value="Click to compare your income"/>
-  </form>
+    </div>
   <!-- <form>
     <p>In the year </p>
     <select name="year"

@@ -56,7 +56,7 @@ def results(request):
     area_income_direction = 'more' if provided_income > area_income else 'less'
     national_income_direction = 'more' if provided_income > national_income else 'less'
     text_res = f'''
-    In the year {year} your household made {str(area_income_diff)}% {area_income_direction} 
+    In {year} your household made {str(area_income_diff)}% {area_income_direction} 
     than the median household in {area_name}, and  {str(national_income_diff)}% 
     {national_income_direction} than the median household in the United States.
     '''

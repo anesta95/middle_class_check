@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import NumberInput
 from dynamic_forms import DynamicField, DynamicFormMixin
 from .models import MedianHouseholdIncome
 
@@ -43,6 +44,7 @@ class AreaForm(DynamicFormMixin, forms.Form):
     )
 
     income = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'style': 'width: 115px; height: 25px;'}),
         min_value = 0,
         max_value = 100000000
     )
