@@ -20,23 +20,6 @@ def plotly_plot(year, provided_income, area_income, national_income, area_name, 
         currency_format = "${:,}".format(y_data[i])
         text_labels.append(currency_format)
 
-
-    # fig = px.bar(x=x_data, 
-    #              y=y_data, 
-    #              title=fig_title,
-    #              hover_name=x_data,
-    #              hover_data={
-    #                 'text':False
-    #              },
-    #             #  hovertemplate='<b>$%{y:.2f}</b>',
-    #              text=text_labels,
-    #              error_y=[None, area_moe, national_moe],
-    #              labels={
-    #                 "x": "",
-    #                 "y": ""
-    #              })
-
-
     fig = go.Figure(go.Bar(
         x = x_data,
         y = y_data,

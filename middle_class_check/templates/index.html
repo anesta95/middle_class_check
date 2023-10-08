@@ -29,7 +29,7 @@
             {% render_field form.geoid class='custom-select' %}
         </div>
         <div class="col-12">
-            <label>and my <i><b>household<sup>1</sup></b></i> had an <i><b>income<sup>2</sup></b></i> of</label>
+            <label>and my <a href="https://www.census.gov/glossary/?term=Household" target="_blank">household</a> had an <a href="https://www.census.gov/glossary/?term=Income">income</a> of</label>
         </div>
         <div class="col-12">
             {% render_field form.income class='form-control' name="income" %}
@@ -42,56 +42,8 @@
         </div>
     </form>
     <div class="col-12 pt-5">
-        <p><i><b><sup>1</sup></b></i>The Census Bureau defines a <a href="https://www.census.gov/glossary/?term=Household">household</a> as a housing unit (such as a house or apartment) that includes all the people who occupy it as their usual place of residence. This includes related family and unrelated people.</p>
-        <p><i><b><sup>2</sup></b></i>The Census Bureau defines <a href="https://www.census.gov/glossary/?term=Income">income</a> as the income received on a regular basis (exclusive of certain money receipts such as capital gains and lump-sum payments) before payments for personal income taxes, social security, union dues, medicare deductions, etc.</p>
+        <p>middleclasscheck.com doesn't log or share <b><i>any</i></b> personal data, including income input. No cookies or other tracking and analytics tools are used by this site.</p>
+        <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://middleclasscheck.com">Median Income Checker</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://justanesta.com">Adrian Nesta</a> is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> 
 
     </div>
-  <!-- <form>
-    <p>In the year </p>
-    <select name="year"
-    id="year" 
-    hx-get="{% url 'locales' %}"
-    hx-include="[name='state_name'], [name='geography_name']"
-    hx-trigger="change"
-    hx-target="#locales"
-    >
-        {% for year in unique_years %}
-            <option value="{{ year }}">{{ year }}</option>
-        {% endfor %}
-    </select>
-    <p> I lived in the state of </p>
-    <select name="state_name"
-    id="state_name"
-    hx-get="{% url 'locales' %}"
-    hx-include="[name='year'], [name='geography_name']"
-    hx-trigger="change"
-    hx-target="#locales"
-    >
-        {% for state in unique_states %}
-            <option value="{{ state }}">{{ state }}</option>
-        {% endfor %}
-    </select>
-    <p> and the </p>
-    <select name="geography_name"
-    id="geography_name"
-    hx-get="{% url 'locales' %}"
-    hx-include="[name='state_name'], [name='year']"
-    hx-trigger="change"
-    hx-target="#locales"
-    >
-        {% for area in unique_areas %}
-            <option value="{{ area }}">{{ area }}</option>
-        {% endfor %}
-    </select>
-    
-    <p> of </p>
-    <div id="locales">
-        {% include "partials/locales.html" %}
-    </div>
-
-    <p>and had a household income of </p>
-    <input type="text" name="hh_income" id="hh_income" required> 
-
-    <input type="submit" name="hh_income_check"  value="Click to compare your income"/>
-  </form> -->
 {% endblock %}
