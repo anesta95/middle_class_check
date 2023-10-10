@@ -78,13 +78,11 @@ WSGI_APPLICATION = 'amimiddleclass.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': os.getenv('POSTGRES_URL'),
-        'NAME': os.getenv('PGNAME'),
-        'USER': os.getenv('PGUSER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('PGHOST'),
-        'PORT': os.getenv('PGPORT'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'anesta9513$median_hh_income_data',
+        'USER': 'anesta9513',
+        'PASSWORD': os.getenv('MYSQL_PW'),
+        'HOST': 'anesta9513.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -124,6 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = '/home/anesta9513/middle_class_check/middle_class_check/static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
