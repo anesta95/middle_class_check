@@ -13,3 +13,4 @@ sqlparse==0.4.4
 tenacity==8.2.2
 tzdata==2023.3
 python-dotenv==1.0.0
+mysqlclient=2.2.0
